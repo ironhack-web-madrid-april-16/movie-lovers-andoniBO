@@ -23,7 +23,7 @@ def search_film(title)
   imdb = Fake_imdb.new
   movies = imdb.search_nine(session[:title])
   film_index = movies.index(title)
-  binding.pry
+  #binding.pry
   movies[film_index]
 end
 
@@ -44,7 +44,7 @@ get '/quiz' do
 end
 
 get '/check_answer/:movie_title/:question_id' do
-  film = search_film(:movie_title)
+  film = search_film(params[:movie_title])
   if film.release_date == questions[params[:question_id]][:answer]
     redirect to(:player_evaluation)
   else
